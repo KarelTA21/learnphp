@@ -1,30 +1,22 @@
 <?php
 
 class Box {
-    public $var;
-    public $foo;
-    public $bar;
-    public function __construct($var, $foo, $bar) {
-        var_dump($var, $foo, $bar);
-        $this->var = $var;
-        $this->foo = $foo;
-        $this->bar = $bar;
+    public static $count = 0;    
+    public $bar = 4;
+    public function test2() {
+        var_dump(static::class, self::$count);
     }
-    public function __set( $name, $value ) {
-        var_dump($name, $value);
-    }
-    public function __get( $name ) {
-        return "prop $name does not exist";
-    }
-    public function __call($name, $args){
-        var_dump($name, $args);
-    }
-    public function __destruct() {
-        echo "Object was destroyed\n";
+    public static function test(){
+        var_dump(static::class);
     }
 }
-$box = new Box('hello', 1, 2);
-$box->bla = 5;
-var_dump($box->salsa);
-$box->helloworld('Hello world');
-var_dump(serialize($box));
+class MetalBox extends Box {
+
+}
+
+Box::$count = 1;
+Box::$count = 2;
+MetalBox::test();
+$box = new Box();
+$box->test2();
+var_dump(Box::$count, Box::$count);
