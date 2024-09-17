@@ -4,8 +4,9 @@
             public static $routes = [];
 
             public $path;
-            public function __construct(){
-                $this->path;
+            public function __construct($path){
+
+                $this->path = $path;
             }
 
             public function match(){
